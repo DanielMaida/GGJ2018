@@ -293,16 +293,16 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &758618807
+--- !u!1 &677908345
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 758618810}
-  - component: {fileID: 758618809}
-  - component: {fileID: 758618808}
+  - component: {fileID: 677908348}
+  - component: {fileID: 677908347}
+  - component: {fileID: 677908346}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: Untagged
@@ -310,29 +310,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &758618808
+--- !u!114 &677908346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 758618807}
+  m_GameObject: {fileID: 677908345}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb971bd93ef66a04fb9d1bacc66e11e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &758618809
+--- !u!82 &677908347
 AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 758618807}
+  m_GameObject: {fileID: 677908345}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 766024819f7b51c4db5c4ce0db8440be, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -401,14 +401,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!4 &758618810
+--- !u!4 &677908348
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 758618807}
+  m_GameObject: {fileID: 677908345}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.23515, y: 4.021319, z: 6.544158}
+  m_LocalPosition: {x: -7.754639, y: 0.10214135, z: -0.09991967}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -594,7 +594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 2051226342}
   animator: {fileID: 1255110678}
-  playBlip: {fileID: 758618808}
+  playBlip: {fileID: 677908346}
 --- !u!224 &1262573328
 RectTransform:
   m_ObjectHideFlags: 0

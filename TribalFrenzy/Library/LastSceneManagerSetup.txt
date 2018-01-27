@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/PedroQ/Scene/BeatManagerSceneCreation.unity
-  isLoaded: 1
-  isActive: 1

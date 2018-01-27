@@ -4,10 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Destroyer
   - BeatHitter
   - ButtonTrigger
   - EnergyArea
+=======
+  - Note
+>>>>>>> ffa0276537f6b80d96b4b30736c0b67e0c2bc4ef
   layers:
   - Default
   - TransparentFX

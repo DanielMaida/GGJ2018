@@ -29,6 +29,7 @@ public class HitButton : MonoBehaviour {
                 if (!pressed)
                 {
                     //spriteRender.color = Color.green;
+                    Debug.Log("OI");
                     pressed = true;
                     beatManager.buttonCorrectClick();
                     animator.SetBool("pressed", true);

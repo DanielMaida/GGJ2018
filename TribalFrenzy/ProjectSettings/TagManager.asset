@@ -8,6 +8,9 @@ TagManager:
   - BeatHitter
   - Destroyer
   - EnergyArea
+  - FireArea
+  - LowArea
+  - NoArea
   layers:
   - Default
   - TransparentFX

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnergyIcon : MonoBehaviour {
 
-    public delegate void ActionDelegate(bool state);
+    public delegate void ActionDelegate(int state);
     public static event ActionDelegate OnEnergyStateChange;
+
+    public delegate void newActionDelegate();
+    public static event newActionDelegate OnFireClick;
 
     LevelManager lvlManager;
 
@@ -13,7 +16,7 @@ public class EnergyIcon : MonoBehaviour {
     public float negativeForce;
 
     public bool inside = false;
-    private Rigidbody2D rg;
+    public Rigidbody2D rg;
 
     // Use this for initialization
     void Awake()
@@ -24,26 +27,43 @@ public class EnergyIcon : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("EnergyArea"))
+        if (collision.gameObject.tag.Equals("NoArea"))
         {
             inside = true;
             if(OnEnergyStateChange != null)
             {
-                OnEnergyStateChange(true);
+                OnEnergyStateChange(0);
             }
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag.Equals("EnergyArea"))
+        if (collision.gameObject.tag.Equals("LowArea"))
         {
-            inside = false;
+            inside = true;
             if (OnEnergyStateChange != null)
             {
-                OnEnergyStateChange(false);
+                OnEnergyStateChange(1);
             }
         }
+
+        if (collision.gameObject.tag.Equals("EnergyArea"))
+        {
+            inside = true;
+            if (OnEnergyStateChange != null)
+            {
+                OnEnergyStateChange(2);
+            }
+        }
+
+        if (collision.gameObject.tag.Equals("FireArea"))
+        {
+            inside = true;
+            if (OnEnergyStateChange != null)
+            {
+                OnEnergyStateChange(3);
+            }
+        }
+
+
     }
 	
 	// Update is called once per frame
@@ -52,11 +72,12 @@ public class EnergyIcon : MonoBehaviour {
         {
             rg.velocity = Vector2.zero;
             rg.velocity = new Vector2(0, force);
-            //transform.Translate(Vector3.up * force * Time.deltaTime);
+
+            if(OnFireClick != null)
+            {
+                OnFireClick();
+            }
         }
-
-        //transform.Translate(-Vector3.up * negativeForce * Time.deltaTime);
-
 
     }
 }

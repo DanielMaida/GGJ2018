@@ -5,11 +5,16 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
 
     public EnergyIcon energyIcon;
+    public Vidas vidasBar;
+
+    public FireBar fireBar;
     public Animator girlAnimator;
+    public Animator fogueiraAnimator;
+    public Animator catAnimator;
 
     public int score = 0;
-    public int maxVidas = 3;
-    public int vidas = 3;
+    public int maxVidas = 6;
+    public int vidas = 6;
 
     public int groupCount = 0;
     public bool winGame = false;
@@ -20,6 +25,9 @@ public class LevelManager : MonoBehaviour {
     private int[] level1 = new int[] { 0, 1, 1, 1, 2, 2, 1, 3, 1, 2, 1, 2, 1, 3, 2, 1, 1, 1, 2, 1 };
     private int[] level2 = new int[] { 0, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3, 3, 2, 3, 2, 3 };
     private int[] level3 = new int[] { 0, 3, 3, 3, 2, 2, 3, 3, 3, 3, 1, 2, 3, 3, 1, 3, 1, 3, 3, 2, 3, 2, 3, 2, 3 };
+    private int[] level4 = new int[] { 0, 3, 2, 3, 3, 3, 2, 3, 2, 3, 2, 2, 3, 3, 2, 3, 1, 3, 3, 2, 3, 2, 3, 3, 2, 3 };
+
+    private int[][] levelList = new int[4][];
 
     private void Awake()
     {
@@ -27,40 +35,87 @@ public class LevelManager : MonoBehaviour {
         energyIcon = transform.GetComponentInChildren<EnergyIcon>();
 
         EnergyIcon.OnEnergyStateChange += OnEnergyStateChange;
+        EnergyIcon.OnFireClick += onfireClick;
 
         BeatManager.OnCorrectClick += OnCorrectClick;
         BeatManager.OnWrongClick += OnWrongClick;
         BeatManager.OnMissClick += OnMissClick;
         BeatManager.OnLevelCompleted += OnLevelCompleted;
         BeatManager.OnGroupCompleted += OnGroupCompleted;
+
+        levelList[0] = level1;
+        levelList[1] = level2;
+        levelList[2] = level3;
+        levelList[3] = level4;
+
+        PlayerPrefs.SetInt("levelSelected", 1);
+        int currentLevel = PlayerPrefs.GetInt("levelSelected", 0);
+
+        beatManager.ConfigureLevel(levelList[currentLevel]);
+        fireBar.SetLevel(currentLevel);
+
     }
 
-    private void OnEnergyStateChange(bool _state)
+    private void onfireClick()
     {
-        if (_state && beatManager.levelConfigured && !beatManager.running)
+        catAnimator.SetTrigger("action");
+    }
+
+    private void OnEnergyStateChange(int _state)
+    {
+        if (_state == 2 && beatManager.levelConfigured && !beatManager.running)
         {
             beatManager.StartLevel();
+        }
+
+        switch (_state)
+        {
+            case 0:
+                fogueiraAnimator.SetBool("started", false);
+                break;
+            case 1:
+                fogueiraAnimator.SetBool("started", true);
+                if (fogueiraAnimator.GetBool("boa"))
+                {
+                    fogueiraAnimator.SetBool("boa", false);
+                }
+                break;
+            case 2:
+                fogueiraAnimator.SetBool("boa", true);
+                if (fogueiraAnimator.GetBool("fogo"))
+                {
+                    fogueiraAnimator.SetBool("fogo", false);
+                }
+                    break;
+            case 3:
+                fogueiraAnimator.SetBool("fogo", true);
+                break;
         }
     }
 
     private void OnWrongClick()
     {
+        /*
         vidas--;
         if(vidas <= 0)
         {
             vidas = 0;
             Perdeu();
         }
+        vidasBar.SetVidas(vidas);*/
     }
 
     private void OnMissClick()
     {
         vidas--;
+  
         if (vidas <= 0)
         {
             vidas = 0;
             Perdeu();
         }
+
+        vidasBar.SetVidas(vidas);
     }
 
     private void OnLevelCompleted()

@@ -68,7 +68,8 @@ public class EnergyIcon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //PC
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) )
         {
             rg.velocity = Vector2.zero;
             rg.velocity = new Vector2(0, force);
@@ -76,6 +77,21 @@ public class EnergyIcon : MonoBehaviour {
             if(OnFireClick != null)
             {
                 OnFireClick();
+            }
+        }
+
+        //MOBILE
+        foreach(Touch touch in Input.touches)
+        {
+            if (touch.position.x < Screen.width / 2)
+            {
+                rg.velocity = Vector2.zero;
+                rg.velocity = new Vector2(0, force);
+
+                if (OnFireClick != null)
+                {
+                    OnFireClick();
+                }
             }
         }
 

@@ -11,7 +11,7 @@ public class Vidas : MonoBehaviour {
 
 	public void SetVidas(int vidas)
     {
-        Debug.Log(vidas);
+        //Debug.Log(vidas);
         for(int x = 0; x < sprites.Length; x++)
         {
             if(x < vidas/2)

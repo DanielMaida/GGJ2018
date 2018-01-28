@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour {
     public Vidas vidasBar;
 
     private AudioManager audioManager;
-    public AudioClip carpetSound;
+    public AudioClip[] carpetSound;
     public AudioClip winClip;
 
     public int fireZone; 
@@ -30,12 +30,25 @@ public class LevelManager : MonoBehaviour {
 
     BeatManager beatManager;
 
+    public Sprite[] smokeByLevel;
+
+    public Sprite[] backgroundByLevel;
+    public SpriteRenderer background;
+    /*
     private int[] level1 = new int[] { 0, 1, 1, 1, 2, 2, 1, 3, 1, 2, 1, 2, 1, 3, 2, 1, 1, 1, 2, 1 };
     private int[] level2 = new int[] { 0, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3, 3, 2, 3, 2, 3 };
     private int[] level3 = new int[] { 0, 3, 3, 3, 2, 2, 3, 3, 3, 3, 1, 2, 3, 3, 1, 3, 1, 3, 3, 2, 3, 2, 3, 2, 3 };
     private int[] level4 = new int[] { 0, 3, 2, 3, 3, 3, 2, 3, 2, 3, 2, 2, 3, 3, 2, 3, 1, 3, 3, 2, 3, 2, 3, 3, 2, 3 };
+    */
+
+    private int[] level1 = new int[] { 0, 1, 1 };
+    private int[] level2 = new int[] { 0, 2, 2 };
+    private int[] level3 = new int[] { 0, 3, 3 };
+    private int[] level4 = new int[] { 0, 3, 2 };
 
     private int[][] levelList = new int[4][];
+
+    private int currentLevel = 0;
 
     private void Awake()
     {
@@ -57,12 +70,24 @@ public class LevelManager : MonoBehaviour {
         levelList[2] = level3;
         levelList[3] = level4;
 
-        PlayerPrefs.SetInt("levelSelected", 1);
-        int currentLevel = PlayerPrefs.GetInt("levelSelected", 0);
+        currentLevel = PlayerPrefs.GetInt("levelSelected", 0);
 
         beatManager.ConfigureLevel(levelList[currentLevel]);
         fireBar.SetLevel(currentLevel);
 
+        background.sprite = backgroundByLevel[currentLevel];
+
+        catAnimator = GameObject.FindGameObjectWithTag("Cat").GetComponent<Animator>();
+        fogueiraAnimator = GameObject.FindGameObjectWithTag("Fogueira").GetComponent<Animator>();
+        girlAnimator = GameObject.FindGameObjectWithTag("Girl").GetComponent<Animator>();
+
+    }
+
+    void Start()
+    {
+        catAnimator = GameObject.FindGameObjectWithTag("Cat").GetComponent<Animator>();
+        fogueiraAnimator = GameObject.FindGameObjectWithTag("Fogueira").GetComponent<Animator>();
+        girlAnimator = GameObject.FindGameObjectWithTag("Girl").GetComponent<Animator>();
     }
 
     private void onfireClick()
@@ -72,6 +97,22 @@ public class LevelManager : MonoBehaviour {
 
     private void OnEnergyStateChange(int _state)
     {
+
+        if(fogueiraAnimator == null)
+        {
+            fogueiraAnimator = GameObject.FindGameObjectWithTag("Fogueira").GetComponent<Animator>();
+        }
+
+        if(catAnimator == null)
+        {
+            catAnimator = GameObject.FindGameObjectWithTag("Cat").GetComponent<Animator>();
+        }
+
+        if( girlAnimator == null)
+        {
+            girlAnimator = GameObject.FindGameObjectWithTag("Girl").GetComponent<Animator>();
+        }
+
         fireZone = _state;
         if (_state == 2 && beatManager.levelConfigured && !beatManager.running)
         {
@@ -124,6 +165,7 @@ public class LevelManager : MonoBehaviour {
 
     private void OnMissClick()
     {
+        girlAnimator.SetTrigger("error");
         vidas--;
   
         if (vidas <= 0)
@@ -147,17 +189,19 @@ public class LevelManager : MonoBehaviour {
 
     private void OnCorrectClick()
     {
-        Debug.Log("Correto");
+        //Debug.Log("Correto");
         
         score++;
 
         girlAnimator.SetTrigger("correct");
-        audioManager.PlayCarpetSound(carpetSound);
+
+        audioManager.PlayCarpetSound(carpetSound[Random.Range(0,carpetSound.Length)]);
     }
 
     private void Perdeu()
     {
-        SceneManager.LoadScene("level_selection");
+        PlayerPrefs.SetInt("StartMenuAt", 2);
+        SceneManager.LoadScene(0);
     }
 
     private void Ganhou()
@@ -166,7 +210,13 @@ public class LevelManager : MonoBehaviour {
         winGame = true;
         girlAnimator.SetTrigger("win");
         audioManager.PlayWinSound(winClip);
+
+        SpriteRenderer smokeRender = fumaca.GetComponent<SpriteRenderer>();
+        smokeRender.sprite = smokeByLevel[currentLevel];
         fumaca.SetActive(true);
+
+        PlayerPrefs.SetInt("level" + currentLevel + "Finished",1);
+
         Invoke("CutsceneTransition", winClip.length);
     }
 
@@ -175,10 +225,6 @@ public class LevelManager : MonoBehaviour {
 
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {

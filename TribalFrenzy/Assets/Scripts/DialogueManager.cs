@@ -70,7 +70,13 @@ public class DialogueManager : MonoBehaviour {
     }
 
     void NextLevel(){
-        PlayerPrefs.SetInt("levelSelected", 2);
-        SceneManager.LoadScene("BeatManagerSceneCreation");
+        //coloca pra ele começar na selecao de level
+        PlayerPrefs.SetInt("StartMenuAt", 2);
+        if (PlayerPrefs.GetInt("levelSelected") == 3)
+        {
+            PlayerPrefs.SetInt("StartMenuAt", 1);
+        }
+
+        SceneManager.LoadScene(0);
     }
 }

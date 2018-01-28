@@ -10,7 +10,7 @@ public class EnergyIcon : MonoBehaviour {
     public delegate void newActionDelegate();
     public static event newActionDelegate OnFireClick;
 
-    LevelManager lvlManager;
+    //LevelManager lvlManager;
 
     public float force;
     public float negativeForce;
@@ -21,7 +21,7 @@ public class EnergyIcon : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        lvlManager = transform.parent.GetComponent<LevelManager>();
+        //lvlManager = transform.parent.GetComponent<LevelManager>();
         rg = GetComponent<Rigidbody2D>();
     }
 

@@ -1085,7 +1085,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: 1265}
+  m_AnchoredPosition: {x: 0.00000011920964, y: 1349}
   m_SizeDelta: {x: 976, y: 532.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1255110676
@@ -1202,8 +1202,8 @@ MonoBehaviour:
   dialogue0:
     name: 
     sentences:
-    - The Akidauana tribe always enjoyed a good relationship with the their neighbours,
-      the Tupinambas.
+    - "The Akidauana tribe always enjoyed a good relationship with the their neighbours,
+      the Tupinamb\xE1s."
     - They used SMOKE SIGNS to share their main events
     - Like the banquet they had when celebrating their most recent hunt
   dialogue1:
@@ -1211,11 +1211,11 @@ MonoBehaviour:
     sentences:
     - Some day, Pocaspontas, an Akidauana native, found a strange fruit around her
       tribe
-    - She wondered why the gods have sent this foul fruit to her land.
+    - She wondered why the gods had sent this foul fruit to her land.
   dialogue2:
     name: 
     sentences:
-    - In the next few days, Pocaspontas realized that the gods sent no fruit
+    - In the next few days, Pocaspontas realized that the gods had sent no fruit
     - "Strange white men came from a forsaken place to \r\ndestroy her homeland"
     - "Pocaspontas had to ask for the Tupinamb\xE1s' help"
   dialogue3:
@@ -1223,7 +1223,7 @@ MonoBehaviour:
     sentences:
     - "Finally the Tupinamb\xE1s arrived, and together they managed "
     - to purge these evil men from their sacred land.
-    - Once again, peace was restored in pindorama.
+    - Once again, peace was restored in the holy Pindorama land.
     - Congratulation Pocaspontas, you've saved us!
 --- !u!1 &1268107858
 GameObject:

@@ -113,11 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!212 &1339089773 stripped
-SpriteRenderer:
-  m_PrefabParentObject: {fileID: 212344305561339360, guid: c26ab31cef019784380b6423609feacd,
-    type: 2}
-  m_PrefabInternal: {fileID: 1463140985}
 --- !u!1001 &1463140985
 Prefab:
   m_ObjectHideFlags: 0
@@ -125,11 +120,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114135152251512550, guid: c26ab31cef019784380b6423609feacd,
-        type: 2}
-      propertyPath: backgroundByLevel.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4607005836123756, guid: c26ab31cef019784380b6423609feacd, type: 2}
       propertyPath: m_LocalPosition.x
       value: -6.59
@@ -162,53 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4716431443909278, guid: c26ab31cef019784380b6423609feacd, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 4.52
+    - target: {fileID: 114191346803126740, guid: c26ab31cef019784380b6423609feacd,
+        type: 2}
+      propertyPath: audioS
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4716431443909278, guid: c26ab31cef019784380b6423609feacd, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 6.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 114135152251512550, guid: c26ab31cef019784380b6423609feacd,
-        type: 2}
-      propertyPath: background
-      value: 
-      objectReference: {fileID: 1339089773}
-    - target: {fileID: 114135152251512550, guid: c26ab31cef019784380b6423609feacd,
-        type: 2}
-      propertyPath: backgroundByLevel.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 731f1180e99e7d04dab444fe5dd19e99,
-        type: 3}
-    - target: {fileID: 114135152251512550, guid: c26ab31cef019784380b6423609feacd,
-        type: 2}
-      propertyPath: backgroundByLevel.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: 731f1180e99e7d04dab444fe5dd19e99,
-        type: 3}
-    - target: {fileID: 114135152251512550, guid: c26ab31cef019784380b6423609feacd,
-        type: 2}
-      propertyPath: backgroundByLevel.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: 53fe035e26404f2449c0d94791364eea,
-        type: 3}
-    - target: {fileID: 114135152251512550, guid: c26ab31cef019784380b6423609feacd,
-        type: 2}
-      propertyPath: backgroundByLevel.Array.data[3]
-      value: 
-      objectReference: {fileID: 21300000, guid: 53fe035e26404f2449c0d94791364eea,
-        type: 3}
-    - target: {fileID: 212344305561339360, guid: c26ab31cef019784380b6423609feacd,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598618298245334, guid: c26ab31cef019784380b6423609feacd, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 82491378793475234, guid: c26ab31cef019784380b6423609feacd, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c26ab31cef019784380b6423609feacd, type: 2}
   m_IsPrefabParent: 0

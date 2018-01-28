@@ -154,7 +154,7 @@ public class LevelManager : MonoBehaviour {
     private void OnWrongClick()
     {
         girlAnimator.SetTrigger("error");
-        vidas--;
+        vidas-=2;
         if(vidas <= 0)
         {
             vidas = 0;
@@ -166,7 +166,7 @@ public class LevelManager : MonoBehaviour {
     private void OnMissClick()
     {
         girlAnimator.SetTrigger("error");
-        vidas--;
+        vidas-=2;
   
         if (vidas <= 0)
         {
@@ -201,16 +201,31 @@ public class LevelManager : MonoBehaviour {
     private void Perdeu()
     {
         PlayerPrefs.SetInt("StartMenuAt", 2);
+        BeatManager.OnCorrectClick -= OnCorrectClick;
+        BeatManager.OnWrongClick -= OnWrongClick;
+        BeatManager.OnMissClick -= OnMissClick;
+        BeatManager.OnLevelCompleted -= OnLevelCompleted;
+        BeatManager.OnGroupCompleted -= OnGroupCompleted;
+        EnergyIcon.OnEnergyStateChange -= OnEnergyStateChange;
+        EnergyIcon.OnFireClick -= onfireClick;
         SceneManager.LoadScene(0);
     }
 
     private void Ganhou()
     {
+        BeatManager.OnCorrectClick -= OnCorrectClick;
+        BeatManager.OnWrongClick -= OnWrongClick;
+        BeatManager.OnMissClick -= OnMissClick;
+        BeatManager.OnLevelCompleted -= OnLevelCompleted;
+        BeatManager.OnGroupCompleted -= OnGroupCompleted;
+        EnergyIcon.OnEnergyStateChange -= OnEnergyStateChange;
+        EnergyIcon.OnFireClick -= onfireClick;
+
         beatManager.running = false;
         winGame = true;
         girlAnimator.SetTrigger("win");
         audioManager.PlayWinSound(winClip);
-
+        
         SpriteRenderer smokeRender = fumaca.GetComponent<SpriteRenderer>();
         smokeRender.sprite = smokeByLevel[currentLevel];
         fumaca.SetActive(true);

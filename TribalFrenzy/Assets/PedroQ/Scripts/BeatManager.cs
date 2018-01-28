@@ -89,9 +89,6 @@ public class BeatManager : MonoBehaviour {
             audioM = this.gameObject.AddComponent<AudioManager>();
         }
 
-        audioM.SetBGMusic(bgMusic);
-
-
         //Cria O ritmo dos blocos
         BeatBlock bloco0 = new BeatBlock(2, new float[] { });
         BeatBlock bloco1 = new BeatBlock(2, new float[] { 0f });
@@ -146,8 +143,8 @@ public class BeatManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        audioM.SetBGMusic(bgMusic);
+    }
 
     public void ConfigureLevel(int[] levelCode)
     {

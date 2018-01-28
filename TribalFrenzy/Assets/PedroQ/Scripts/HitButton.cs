@@ -25,7 +25,8 @@ public class HitButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.RightArrow) && !levelManager.winGame)
+        //PC
+        if ((Input.GetKeyDown(KeyCode.RightArrow) ||Input.GetKeyDown(KeyCode.D)) && !levelManager.winGame)
         {
             if (inside && !levelManager.winGame)
             {
@@ -33,7 +34,7 @@ public class HitButton : MonoBehaviour {
                 {
                     //spriteRender.color = Color.green;
                     //Debug.Log("OI");
-                    if (transform.root.GetComponent<LevelManager>().fireZone == 2)
+                    if (levelManager.fireZone == 2)
                     {
                         pressed = true;
                         beatManager.buttonCorrectClick();
@@ -45,12 +46,45 @@ public class HitButton : MonoBehaviour {
                 }
                 else
                 {
-                    beatManager.buttonWrongClick();
+                    //eatManager.buttonWrongClick();
                 }
                 
             }
         }
-	}
+
+        //MOBILE
+        foreach (Touch touch in Input.touches)
+        {
+            if (touch.position.x > Screen.width / 2)
+            {
+                if (inside && !levelManager.winGame)
+                {
+                    if (!pressed)
+                    {
+                        //spriteRender.color = Color.green;
+                        //Debug.Log("OI");
+                        if (levelManager.fireZone == 2)
+                        {
+                            pressed = true;
+                            beatManager.buttonCorrectClick();
+                            animator.SetBool("pressed", true);
+                        }
+                        else
+                            return;
+
+                    }
+                    else
+                    {
+                        //eatManager.buttonWrongClick();
+                    }
+
+                }
+            }
+            
+        }
+
+
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

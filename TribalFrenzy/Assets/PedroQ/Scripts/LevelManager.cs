@@ -41,10 +41,11 @@ public class LevelManager : MonoBehaviour {
     private int[] level4 = new int[] { 0, 3, 2, 3, 3, 3, 2, 3, 2, 3, 2, 2, 3, 3, 2, 3, 1, 3, 3, 2, 3, 2, 3, 3, 2, 3 };
     */
 
-    private int[] level1 = new int[] { 0, 1, 1 };
-    private int[] level2 = new int[] { 0, 2, 2 };
-    private int[] level3 = new int[] { 0, 3, 3 };
-    private int[] level4 = new int[] { 0, 3, 2 };
+    private int[] level1 = new int[] { 0, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2 };
+    private int[] level2 = new int[] { 0, 2, 2, 1, 2, 3, 2, 2, 2, 1, 2, 1, 1, 2, 3, 2, 3, 2, 1, 1, 3, 1, 2 };
+
+    private int[] level3 = new int[] { 0, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 2, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1 };
+    private int[] level4 = new int[] { 0, 1, 1, 2, 2, 1, 1, 2, 2, 1, 3, 1, 2, 3, 2, 3, 1, 2, 2, 1, 2, 1, 2};
 
     private int[][] levelList = new int[4][];
 
@@ -72,7 +73,7 @@ public class LevelManager : MonoBehaviour {
 
         currentLevel = PlayerPrefs.GetInt("levelSelected", 0);
 
-        beatManager.ConfigureLevel(levelList[currentLevel]);
+        
         fireBar.SetLevel(currentLevel);
 
         background.sprite = backgroundByLevel[currentLevel];
@@ -85,6 +86,7 @@ public class LevelManager : MonoBehaviour {
 
     void Start()
     {
+        beatManager.ConfigureLevel(currentLevel, levelList[currentLevel]);
         catAnimator = GameObject.FindGameObjectWithTag("Cat").GetComponent<Animator>();
         fogueiraAnimator = GameObject.FindGameObjectWithTag("Fogueira").GetComponent<Animator>();
         girlAnimator = GameObject.FindGameObjectWithTag("Girl").GetComponent<Animator>();
@@ -143,7 +145,7 @@ public class LevelManager : MonoBehaviour {
                 }
                 break;
             case 3:
-                Debug.Log("vamos ver");
+                //Debug.Log("vamos ver");
                 fogueiraAnimator.SetBool("fogo", true);
                 girlAnimator.SetBool("burnning", true);
                 catAnimator.SetTrigger("burn");
@@ -153,8 +155,9 @@ public class LevelManager : MonoBehaviour {
 
     private void OnWrongClick()
     {
+        Debug.Log("wrongClick");
         girlAnimator.SetTrigger("error");
-        vidas-=2;
+        vidas--;
         if(vidas <= 0)
         {
             vidas = 0;
@@ -165,8 +168,9 @@ public class LevelManager : MonoBehaviour {
 
     private void OnMissClick()
     {
+        Debug.Log("missClick");
         girlAnimator.SetTrigger("error");
-        vidas-=2;
+        vidas--;
   
         if (vidas <= 0)
         {
@@ -243,7 +247,7 @@ public class LevelManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-       
+       /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (beatManager.levelConfigured) return;
@@ -266,5 +270,6 @@ public class LevelManager : MonoBehaviour {
 
             beatManager.StartLevel();
         }
+        */
     }
 }

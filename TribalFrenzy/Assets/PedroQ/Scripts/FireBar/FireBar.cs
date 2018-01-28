@@ -14,9 +14,9 @@ public class FireBar : MonoBehaviour {
     private void Awake()
     {
         configLevel[0] = new IconConfig(6.0f,0.4f,true, 5.5f);
-        configLevel[1] = new IconConfig(4.0f, 0.6f,true, 3.0f);
-        configLevel[2] = new IconConfig(3.0f, 0.6f,false, 2.0f);
-        configLevel[3] = new IconConfig(2.0f, 0.6f,false, 0.5f);
+        configLevel[1] = new IconConfig(4.0f, 0.5f,true, 5.0f);
+        configLevel[2] = new IconConfig(3.0f, 0.55f,false, 4.0f);
+        configLevel[3] = new IconConfig(3.0f, 0.6f,false, 3.5f);
     }
 
     public void SetLevel(int level)

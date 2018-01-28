@@ -158,22 +158,22 @@ public class MenuManager : MonoBehaviour {
 
     public void Btn_Level_1()
     {
-        StartLevel(0);
+        StartLevel(1);
     }
 
     public void Btn_Level_2()
     {
-        StartLevel(1);
+        StartLevel(2);
     }
 
     public void Btn_Level_3()
     {
-        StartLevel(2);
+        StartLevel(3);
     }
 
     public void Btn_Level_4()
     {
-        StartLevel(3);
+        StartLevel(4);
     }
 
     private void StartLevel(int level)

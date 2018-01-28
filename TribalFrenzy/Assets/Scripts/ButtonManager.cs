@@ -10,7 +10,7 @@ public class ButtonManager : MonoBehaviour {
     }
 
     public void PlayButton() {
-        SceneManager.LoadScene("game_scene");
+        SceneManager.LoadScene("BeatManagerSceneCreation");
     }
 
     public void BackButton() {

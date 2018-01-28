@@ -11,6 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/credits_scene.unity
     guid: 01374f09f78f8854099b4dac89b3e60a
+<<<<<<< HEAD
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+=======
+  - enabled: 1
+    path: Assets/level_selection.unity
+    guid: 41dc4385c218b36489a91c9683f0324a
+  - enabled: 1
+    path: Assets/PedroQ/Scene/BeatManagerSceneCreation.unity
+    guid: 47df368ce30e86d45a36853501397704
+  - enabled: 1
+    path: Assets/cutscene_1.unity
+    guid: edb1d4c3fae4ae243bb6c0a52817fed6
+>>>>>>> 361ab35455df1584d7b408a9104091fb80fff406

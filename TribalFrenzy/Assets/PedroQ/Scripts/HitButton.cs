@@ -7,6 +7,8 @@ public class HitButton : MonoBehaviour {
     private Animator animator;
 
     public BeatManager beatManager;
+    public EnergyIcon energyIcon;
+    private LevelManager levelManager;
 
     public bool inside = false;
     private SpriteRenderer spriteRender;
@@ -17,22 +19,28 @@ public class HitButton : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
-        spriteRender = GetComponent<SpriteRenderer>();	
-	}
+        spriteRender = GetComponent<SpriteRenderer>();
+        levelManager = transform.root.GetComponent<LevelManager>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) && !levelManager.winGame)
         {
-            if (inside)
+            if (inside && !levelManager.winGame)
             {
                 if (!pressed)
                 {
                     //spriteRender.color = Color.green;
                     Debug.Log("OI");
-                    pressed = true;
-                    beatManager.buttonCorrectClick();
-                    animator.SetBool("pressed", true);
+                    if (transform.root.GetComponent<LevelManager>().fireZone == 2)
+                    {
+                        pressed = true;
+                        beatManager.buttonCorrectClick();
+                        animator.SetBool("pressed", true);
+                    }
+                    else
+                        return;
                     
                 }
                 else

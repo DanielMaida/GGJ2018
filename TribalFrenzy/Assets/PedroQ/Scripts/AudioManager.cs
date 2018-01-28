@@ -25,4 +25,13 @@ public class AudioManager : MonoBehaviour {
         Debug.Log("oi");
     }
 
+    public void PlayCarpetSound(AudioClip _clip) {
+        audioS.PlayOneShot(_clip, 2f);
+    }
+
+    public void PlayWinSound(AudioClip _clip)
+    {
+        audioS.PlayOneShot(_clip);
+    }
+
 }

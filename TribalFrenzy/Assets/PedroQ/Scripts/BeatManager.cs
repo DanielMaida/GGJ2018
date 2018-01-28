@@ -26,6 +26,9 @@ public class BeatManager : MonoBehaviour {
 
     private AudioManager audioM;
 
+    public bool isInEnergyZone;
+    public GameObject Smoke1;
+
     //Configuracao de tempo inicial
     public float startTime = 0.0f;
     public float currentTime = 0.0f;
@@ -56,6 +59,7 @@ public class BeatManager : MonoBehaviour {
     {
         if(OnCorrectClick != null)
         {
+            Instantiate(Smoke1, new Vector3(-1.05f, -1.44f, 1f), Quaternion.identity);
             OnCorrectClick();
         }
     }
@@ -187,6 +191,7 @@ public class BeatManager : MonoBehaviour {
         {
             
             completedBlocks++;
+            //Colocar fumaca aqui
             //Debug.Log("Block completed" + completedBlocks % numGroup);
             if (completedBlocks % numGroup == 0) {
                 if(OnGroupCompleted != null)

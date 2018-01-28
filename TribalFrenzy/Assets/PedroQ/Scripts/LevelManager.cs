@@ -1,20 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
     public EnergyIcon energyIcon;
     public Vidas vidasBar;
 
+    private AudioManager audioManager;
+    public AudioClip carpetSound;
+    public AudioClip winClip;
+
+    public int fireZone; 
+
     public FireBar fireBar;
     public Animator girlAnimator;
     public Animator fogueiraAnimator;
     public Animator catAnimator;
+    public GameObject fumaca;
 
     public int score = 0;
-    public int maxVidas = 6;
-    public int vidas = 6;
+    public int maxVidas = 12;
+    public int vidas = 12;
 
     public int groupCount = 0;
     public bool winGame = false;
@@ -32,6 +40,7 @@ public class LevelManager : MonoBehaviour {
     private void Awake()
     {
         beatManager = GetComponent<BeatManager>();
+        audioManager = GetComponent<AudioManager>();
         energyIcon = transform.GetComponentInChildren<EnergyIcon>();
 
         EnergyIcon.OnEnergyStateChange += OnEnergyStateChange;
@@ -63,6 +72,7 @@ public class LevelManager : MonoBehaviour {
 
     private void OnEnergyStateChange(int _state)
     {
+        fireZone = _state;
         if (_state == 2 && beatManager.levelConfigured && !beatManager.running)
         {
             beatManager.StartLevel();
@@ -86,23 +96,30 @@ public class LevelManager : MonoBehaviour {
                 {
                     fogueiraAnimator.SetBool("fogo", false);
                 }
-                    break;
+                if (girlAnimator.GetBool("burnning"))
+                {
+                    girlAnimator.SetBool("burnning", false); 
+                }
+                break;
             case 3:
+                Debug.Log("vamos ver");
                 fogueiraAnimator.SetBool("fogo", true);
+                girlAnimator.SetBool("burnning", true);
+                catAnimator.SetTrigger("burn");
                 break;
         }
     }
 
     private void OnWrongClick()
     {
-        /*
+        girlAnimator.SetTrigger("error");
         vidas--;
         if(vidas <= 0)
         {
             vidas = 0;
             Perdeu();
         }
-        vidasBar.SetVidas(vidas);*/
+        vidasBar.SetVidas(vidas);
     }
 
     private void OnMissClick()
@@ -131,20 +148,31 @@ public class LevelManager : MonoBehaviour {
     private void OnCorrectClick()
     {
         Debug.Log("Correto");
+        
         score++;
 
         girlAnimator.SetTrigger("correct");
+        audioManager.PlayCarpetSound(carpetSound);
     }
 
     private void Perdeu()
     {
-
+        SceneManager.LoadScene("level_selection");
     }
 
     private void Ganhou()
     {
         beatManager.running = false;
         winGame = true;
+        girlAnimator.SetTrigger("win");
+        audioManager.PlayWinSound(winClip);
+        fumaca.SetActive(true);
+        Invoke("CutsceneTransition", winClip.length);
+    }
+
+    private void CutsceneTransition() {
+        SceneManager.LoadScene("cutscene_1");
+
     }
 
     // Use this for initialization
@@ -154,6 +182,7 @@ public class LevelManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+       
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (beatManager.levelConfigured) return;

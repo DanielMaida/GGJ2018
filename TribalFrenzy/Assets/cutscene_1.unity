@@ -624,13 +624,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c638389c435da43438c9fb408d93bca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    name: Pocaspontas
+  dialogue0:
+    name: 
     sentences:
-    - "A tribo Akidauana sempre desfrutou de um bom relacionamento com seus vizinhos,
-      os Tupinamb\xE1s"
-    - "Eles usavam sinais de fuma\xE7a para transmitir os seus principais acontecimentos"
-    - "Foi o caso do banquete em que comemoraram o sucesso da sua ca\xE7ada mais recente"
+    - Level 1 Mensagem 1
+    - Level 1 Mensagem 2
+    - Level 1 Mensagem 3
+  dialogue1:
+    name: 
+    sentences:
+    - Level 2 Mensagem 1
+    - Level 2 Mensagem 2
+    - Level 2 Mensagem 3
+  dialogue2:
+    name: 
+    sentences:
+    - Level 3 Mensagem 1
+    - Level 3 Mensagem 2
+    - Level 3 Mensagem 3
+  dialogue3:
+    name: 
+    sentences:
+    - Level 4 Mensagem 1
+    - Level 4 Mensagem 2
+    - Level 4 Mensagem 3
 --- !u!1 &1402001428
 GameObject:
   m_ObjectHideFlags: 0

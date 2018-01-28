@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
+//[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour {
 
     public AudioSource audioS;
@@ -10,6 +10,8 @@ public class AudioManager : MonoBehaviour {
 
     void Awake()
     {
+        audioS = null;
+        audioS = this.gameObject.AddComponent<AudioSource>();
         audioS = GetComponent<AudioSource>();
     }
 
@@ -17,12 +19,18 @@ public class AudioManager : MonoBehaviour {
     {
         BackgroundMusic = _clip;
         audioS.clip = BackgroundMusic;
+
+        Debug.Log(audioS);
     }
 
     public void PlayBGMusic(float delay)
     {
+        if(audioS == null)
+        {
+            audioS = GetComponent<AudioSource>();
+        }
         audioS.PlayDelayed(delay);
-        Debug.Log("oi");
+        //Debug.Log("oi");
     }
 
     public void PlayCarpetSound(AudioClip _clip) {

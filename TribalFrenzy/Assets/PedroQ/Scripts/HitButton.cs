@@ -32,7 +32,7 @@ public class HitButton : MonoBehaviour {
                 if (!pressed)
                 {
                     //spriteRender.color = Color.green;
-                    Debug.Log("OI");
+                    //Debug.Log("OI");
                     if (transform.root.GetComponent<LevelManager>().fireZone == 2)
                     {
                         pressed = true;

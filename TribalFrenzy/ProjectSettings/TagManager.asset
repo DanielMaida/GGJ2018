@@ -11,6 +11,9 @@ TagManager:
   - FireArea
   - LowArea
   - NoArea
+  - Cat
+  - Girl
+  - Fogueira
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class DialogueManager : MonoBehaviour {
 
     public Text dialogueText;
+    public CutsceneManager cutsceneManager;
     private Queue<string> sentences;
     private AudioSource audioSource;
     public Animator animator;
@@ -71,12 +72,12 @@ public class DialogueManager : MonoBehaviour {
 
     void NextLevel(){
         //coloca pra ele começar na selecao de level
+        cutsceneManager.cutscenes[PlayerPrefs.GetInt("levelSelected")].SetActive(false);
         PlayerPrefs.SetInt("StartMenuAt", 2);
         if (PlayerPrefs.GetInt("levelSelected") == 3)
         {
             PlayerPrefs.SetInt("StartMenuAt", 1);
         }
-
         SceneManager.LoadScene(0);
     }
 }

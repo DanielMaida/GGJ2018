@@ -26,9 +26,8 @@ public class MenuManager : MonoBehaviour {
 
     public GameObject[] catList;
 
-    private void Awake()
+    private void Start()
     {
-
         int firstMenu = PlayerPrefs.GetInt("StartMenuAt", 0);
         switch (firstMenu)
         {
@@ -158,22 +157,22 @@ public class MenuManager : MonoBehaviour {
 
     public void Btn_Level_1()
     {
-        StartLevel(1);
+        StartLevel(0);
     }
 
     public void Btn_Level_2()
     {
-        StartLevel(2);
+        StartLevel(1);
     }
 
     public void Btn_Level_3()
     {
-        StartLevel(3);
+        StartLevel(2);
     }
 
     public void Btn_Level_4()
     {
-        StartLevel(4);
+        StartLevel(3);
     }
 
     private void StartLevel(int level)

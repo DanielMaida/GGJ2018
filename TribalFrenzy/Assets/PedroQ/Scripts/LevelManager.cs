@@ -71,12 +71,7 @@ public class LevelManager : MonoBehaviour {
         levelList[2] = level3;
         levelList[3] = level4;
 
-        currentLevel = PlayerPrefs.GetInt("levelSelected", 0);
-
         
-        fireBar.SetLevel(currentLevel);
-
-        background.sprite = backgroundByLevel[currentLevel];
 
         catAnimator = GameObject.FindGameObjectWithTag("Cat").GetComponent<Animator>();
         fogueiraAnimator = GameObject.FindGameObjectWithTag("Fogueira").GetComponent<Animator>();
@@ -86,7 +81,16 @@ public class LevelManager : MonoBehaviour {
 
     void Start()
     {
+        currentLevel = PlayerPrefs.GetInt("levelSelected", 0);
+
+        //currentLevel = 2;
+
+        fireBar.SetLevel(currentLevel);
+        background.sprite = backgroundByLevel[currentLevel];
         beatManager.ConfigureLevel(currentLevel, levelList[currentLevel]);
+
+
+
         catAnimator = GameObject.FindGameObjectWithTag("Cat").GetComponent<Animator>();
         fogueiraAnimator = GameObject.FindGameObjectWithTag("Fogueira").GetComponent<Animator>();
         girlAnimator = GameObject.FindGameObjectWithTag("Girl").GetComponent<Animator>();
